@@ -64,7 +64,54 @@ function drawTwoTriangle() {
   }
 }
 
+// 多个圆
+function drawMoreCircle() {
+  const canvas = document.getElementById('circle')
+  if (canvas.getContext) {
+    const ctx = canvas.getContext('2d')
+
+    for (let i = 0; i < 4; i++) {
+      for (let j = 0; j < 3; j++) {
+        ctx.beginPath()
+        let x = 25 + j * 50
+        let y = 25 + i * 50
+        let radius = 20
+        let startAngle = 0
+        let endAngle = Math.PI + (Math.PI * j) / 2
+        let anticlockwise = i % 2 == 0 ? false : true // true顺
+        ctx.arc(x, y, radius, startAngle, endAngle, anticlockwise)
+
+        if (i > 1) {
+          ctx.fill()
+        } else {
+          ctx.stroke()
+        }
+      }
+    }
+  }
+}
+
+// 二次贝塞尔曲线
+function drawQuadratic() {
+  const canvas = document.getElementById('tutorial')
+  if (canvas.getContext) {
+    const ctx = canvas.getContext('2d')
+
+    ctx.beginPath()
+    ctx.moveTo(75, 25)
+    ctx.quadraticCurveTo(25, 25, 25, 62.5);
+    ctx.quadraticCurveTo(25, 100, 50, 100);
+    ctx.quadraticCurveTo(50, 120, 30, 125);
+    ctx.quadraticCurveTo(60, 120, 65, 100);
+    ctx.quadraticCurveTo(125, 100, 125, 62.5);
+    ctx.quadraticCurveTo(125, 25, 75, 25);
+    ctx.stroke()
+  }
+}
+
 // draw()
 // drawTriangle()
 // drawFace()
-drawTwoTriangle()
+// drawTwoTriangle()
+// drawMoreCircle()
+drawQuadratic()

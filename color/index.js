@@ -59,9 +59,9 @@ function drawTransparency() {
 
     // 画半透明圆
     for (let i = 0; i < 7; i++) {
-      ctx.beginPath()
-      ctx.arc(75, 75, 10+10*i, 0, Math.PI * 2, true)
-      ctx.fill()
+      ctx.beginPath();
+      ctx.arc(75, 75, 10 + 10 * i, 0, Math.PI * 2, true);
+      ctx.fill();
     }
   }
 }
@@ -72,23 +72,23 @@ function drawRgba() {
   if (canvas.getContext) {
     const ctx = canvas.getContext("2d");
     // 画背景
-  ctx.fillStyle = 'rgb(255,221,0)';
-  ctx.fillRect(0,0,150,37.5);
-  ctx.fillStyle = 'rgb(102,204,0)';
-  ctx.fillRect(0,37.5,150,37.5);
-  ctx.fillStyle = 'rgb(0,153,255)';
-  ctx.fillRect(0,75,150,37.5);
-  ctx.fillStyle = 'rgb(255,51,0)';
-  ctx.fillRect(0,112.5,150,37.5);
+    ctx.fillStyle = "rgb(255,221,0)";
+    ctx.fillRect(0, 0, 150, 37.5);
+    ctx.fillStyle = "rgb(102,204,0)";
+    ctx.fillRect(0, 37.5, 150, 37.5);
+    ctx.fillStyle = "rgb(0,153,255)";
+    ctx.fillRect(0, 75, 150, 37.5);
+    ctx.fillStyle = "rgb(255,51,0)";
+    ctx.fillRect(0, 112.5, 150, 37.5);
 
     // 设置透明度值
     ctx.globalAlpha = 0.2;
 
     // 画半透明圆
     for (let i = 0; i < 10; i++) {
-      ctx.fillStyle = 'rgba(255,255,255,' + (i+1) / 10 + ')'
+      ctx.fillStyle = "rgba(255,255,255," + (i + 1) / 10 + ")";
       for (let j = 0; j < 4; j++) {
-        ctx.fillRect(5+i*14, 5+j*37.5,14,27.5)
+        ctx.fillRect(5 + i * 14, 5 + j * 37.5, 14, 27.5);
       }
     }
   }
@@ -100,11 +100,11 @@ function drawLineWidth() {
   if (canvas.getContext) {
     const ctx = canvas.getContext("2d");
     for (let i = 0; i < 10; i++) {
-      ctx.lineWidth = i + 1
-      ctx.beginPath()
-      ctx.moveTo(5+i*14, 5)
-      ctx.lineTo(5+i*14, 140)
-      ctx.stroke()
+      ctx.lineWidth = i + 1;
+      ctx.beginPath();
+      ctx.moveTo(5 + i * 14, 5);
+      ctx.lineTo(5 + i * 14, 140);
+      ctx.stroke();
     }
   }
 }
@@ -115,31 +115,30 @@ function drawLineCap() {
   if (canvas.getContext) {
     const ctx = canvas.getContext("2d");
 
-    const lineCap = ['butt', 'round', 'square']
+    const lineCap = ["butt", "round", "square"];
     // 创建路径
-    ctx.strokeStyle = '#09f'
-    ctx.beginPath()
-    ctx.moveTo(10, 10)
-    ctx.lineTo(140, 10)
-    ctx.moveTo(10, 140)
-    ctx.lineTo(140, 140)
-    ctx.stroke()
+    ctx.strokeStyle = "#09f";
+    ctx.beginPath();
+    ctx.moveTo(10, 10);
+    ctx.lineTo(140, 10);
+    ctx.moveTo(10, 140);
+    ctx.lineTo(140, 140);
+    ctx.stroke();
 
     // 画线条
-    ctx.strokeStyle = 'black'
+    ctx.strokeStyle = "black";
     for (let i = 0; i < lineCap.length; i++) {
-      const cap = lineCap[i]
-      ctx.lineWidth = 15
+      const cap = lineCap[i];
+      ctx.lineWidth = 15;
 
-      ctx.beginPath()
-      ctx.lineCap = cap
-      ctx.moveTo(25+i*50, 10)
-      ctx.lineTo(25+i*50, 140)
-      ctx.stroke()
+      ctx.beginPath();
+      ctx.lineCap = cap;
+      ctx.moveTo(25 + i * 50, 10);
+      ctx.lineTo(25 + i * 50, 140);
+      ctx.stroke();
     }
   }
 }
-
 
 // lineJoin
 function drawLineJoin() {
@@ -147,21 +146,53 @@ function drawLineJoin() {
   if (canvas.getContext) {
     const ctx = canvas.getContext("2d");
 
-    const lineJoin = ['round', 'bevel', 'miter']
+    const lineJoin = ["round", "bevel", "miter"];
 
-    ctx.lineWidth = 10
+    ctx.lineWidth = 10;
     for (let i = 0; i < lineJoin.length; i++) {
-      ctx.lineJoin = lineJoin[i]
+      ctx.lineJoin = lineJoin[i];
 
-      ctx.beginPath()
-      ctx.moveTo(-5, 5 + i * 40)
-      ctx.lineTo(35, 45 + i * 40)
-      ctx.lineTo(75, 5 + i * 40)
-      ctx.lineTo(115, 45 + i * 40)
-      ctx.lineTo(155, 5 + i * 40)
-      ctx.stroke()
+      ctx.beginPath();
+      ctx.moveTo(-5, 5 + i * 40);
+      ctx.lineTo(35, 45 + i * 40);
+      ctx.lineTo(75, 5 + i * 40);
+      ctx.lineTo(115, 45 + i * 40);
+      ctx.lineTo(155, 5 + i * 40);
+      ctx.stroke();
     }
   }
+}
+
+// lineDash
+function drawLineDash() {
+  const canvas = document.getElementById("tutorial")
+  let ctx
+  let offset = 0
+
+  if (canvas.getContext) {
+    ctx = canvas.getContext("2d");
+  }
+
+  function drawDashRect(offset) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.setLineDash([4, 2]);
+    ctx.lineDashOffset = -offset;
+   
+    ctx.strokeRect(10, 10, 100, 100);
+  }
+
+  function march() {
+    offset++
+    
+    if (offset > 16) {
+      offset = 0
+    }
+
+    drawDashRect(offset)
+    setTimeout(march, 20)
+  }
+  
+  march()
 }
 
 // draw()
@@ -170,4 +201,5 @@ function drawLineJoin() {
 // drawRgba()
 // drawLineWidth()
 // drawLineCap()
-drawLineJoin()
+// drawLineJoin()
+drawLineDash()

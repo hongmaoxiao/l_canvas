@@ -94,7 +94,55 @@ function drawRgba() {
   }
 }
 
+// 线条属性
+function drawLineWidth() {
+  const canvas = document.getElementById("tutorial");
+  if (canvas.getContext) {
+    const ctx = canvas.getContext("2d");
+    for (let i = 0; i < 10; i++) {
+      ctx.lineWidth = i + 1
+      ctx.beginPath()
+      ctx.moveTo(5+i*14, 5)
+      ctx.lineTo(5+i*14, 140)
+      ctx.stroke()
+    }
+  }
+}
+
+// lineCap
+function drawLineCap() {
+  const canvas = document.getElementById("tutorial");
+  if (canvas.getContext) {
+    const ctx = canvas.getContext("2d");
+
+    const lineCap = ['butt', 'round', 'square']
+    // 创建路径
+    ctx.strokeStyle = '#09f'
+    ctx.beginPath()
+    ctx.moveTo(10, 10)
+    ctx.lineTo(140, 10)
+    ctx.moveTo(10, 140)
+    ctx.lineTo(140, 140)
+    ctx.stroke()
+
+    // 画线条
+    ctx.strokeStyle = 'black'
+    for (let i = 0; i < lineCap.length; i++) {
+      const cap = lineCap[i]
+      ctx.lineWidth = 15
+
+      ctx.beginPath()
+      ctx.lineCap = cap
+      ctx.moveTo(25+i*50, 10)
+      ctx.lineTo(25+i*50, 140)
+      ctx.stroke()
+    }
+  }
+}
+
 // draw()
 // drawCircle()
 // drawTransparency()
-drawRgba()
+// drawRgba()
+// drawLineWidth()
+drawLineCap()

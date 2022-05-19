@@ -195,6 +195,18 @@ function drawLineDash() {
   march()
 }
 
+// Gradients
+function drawGradients() {
+  const canvas = document.getElementById("tutorial");
+  if (canvas.getContext) {
+    const ctx = canvas.getContext("2d");
+
+    lineargradient = ctx.createLinearGradient(0, 0, 150, 150);
+    lineargradient.addColorStop(0, 'white');
+    lineargradient.addColorStop(1, 'black');
+  }
+}
+
 // draw()
 // drawCircle()
 // drawTransparency()
@@ -202,4 +214,5 @@ function drawLineDash() {
 // drawLineWidth()
 // drawLineCap()
 // drawLineJoin()
-drawLineDash()
+// drawLineDash()
+drawGradients()

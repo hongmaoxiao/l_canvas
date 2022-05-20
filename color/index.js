@@ -165,9 +165,9 @@ function drawLineJoin() {
 
 // lineDash
 function drawLineDash() {
-  const canvas = document.getElementById("tutorial")
-  let ctx
-  let offset = 0
+  const canvas = document.getElementById("tutorial");
+  let ctx;
+  let offset = 0;
 
   if (canvas.getContext) {
     ctx = canvas.getContext("2d");
@@ -177,22 +177,22 @@ function drawLineDash() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.setLineDash([4, 2]);
     ctx.lineDashOffset = -offset;
-   
+
     ctx.strokeRect(10, 10, 100, 100);
   }
 
   function march() {
-    offset++
-    
+    offset++;
+
     if (offset > 16) {
-      offset = 0
+      offset = 0;
     }
 
-    drawDashRect(offset)
-    setTimeout(march, 20)
+    drawDashRect(offset);
+    setTimeout(march, 20);
   }
-  
-  march()
+
+  march();
 }
 
 // Gradients
@@ -202,8 +202,35 @@ function drawGradients() {
     const ctx = canvas.getContext("2d");
 
     lineargradient = ctx.createLinearGradient(0, 0, 150, 150);
-    lineargradient.addColorStop(0, 'white');
-    lineargradient.addColorStop(1, 'black');
+    lineargradient.addColorStop(0, "white");
+    lineargradient.addColorStop(1, "black");
+  }
+}
+
+// createLinearGradient
+function drawCreateLinearGradient() {
+  const canvas = document.getElementById("tutorial");
+  if (canvas.getContext) {
+    const ctx = canvas.getContext("2d");
+
+    // Create gradients
+    const lingrad = ctx.createLinearGradient(0, 0, 0, 150);
+    lingrad.addColorStop(0, "#00ABEB");
+    lingrad.addColorStop(0.5, "#fff");
+    lingrad.addColorStop(0.5, "#26C000");
+    lingrad.addColorStop(1, "#fff");
+
+    const lingrad2 = ctx.createLinearGradient(0, 50, 0, 95);
+    lingrad2.addColorStop(0.5, "#000");
+    lingrad2.addColorStop(1, "rgba(0,0,0,0)");
+
+    // assign gradients to fill and stroke styles
+    ctx.fillStyle = lingrad;
+    ctx.strokeStyle = lingrad2;
+
+    // draw shapes
+    ctx.fillRect(10, 10, 130, 130);
+    ctx.strokeRect(50, 50, 50, 50);
   }
 }
 
@@ -215,4 +242,5 @@ function drawGradients() {
 // drawLineCap()
 // drawLineJoin()
 // drawLineDash()
-drawGradients()
+// drawGradients()
+drawCreateLinearGradient()

@@ -234,6 +234,23 @@ function drawCreateLinearGradient() {
   }
 }
 
+// ImagePattern
+function drawImagePattern() {
+  const canvas = document.getElementById("tutorial");
+  if (canvas.getContext) {
+    const ctx = canvas.getContext("2d");
+    const img = new Image()
+    img.src = 'https://mdn.mozillademos.org/files/222/Canvas_createpattern.png';
+
+    img.onload = function () {
+      // 创建图案
+      const ptrn = ctx.createPattern(img, 'repeat')
+      ctx.fillStyle = ptrn
+      ctx.fillRect(0, 0, 150, 150)
+    }
+  }
+}
+
 // draw()
 // drawCircle()
 // drawTransparency()
@@ -243,4 +260,5 @@ function drawCreateLinearGradient() {
 // drawLineJoin()
 // drawLineDash()
 // drawGradients()
-drawCreateLinearGradient()
+// drawCreateLinearGradient()
+drawImagePattern()

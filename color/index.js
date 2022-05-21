@@ -251,6 +251,23 @@ function drawImagePattern() {
   }
 }
 
+// shadow
+function drawShadow() {
+  const canvas = document.getElementById("tutorial");
+  if (canvas.getContext) {
+    const ctx = canvas.getContext("2d");
+    
+    ctx.shadowOffsetX = 2;
+    ctx.shadowOffsetY = 2;
+    ctx.shadowBlur = 2;
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+
+    ctx.font = "20px Times New Roman"
+    ctx.fillStyle = "black"
+    ctx.fillText("你好，世界！", 5, 30);
+  }
+}
+
 // draw()
 // drawCircle()
 // drawTransparency()
@@ -261,4 +278,5 @@ function drawImagePattern() {
 // drawLineDash()
 // drawGradients()
 // drawCreateLinearGradient()
-drawImagePattern()
+// drawImagePattern()
+drawShadow()

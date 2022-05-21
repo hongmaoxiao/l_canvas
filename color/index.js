@@ -268,6 +268,20 @@ function drawShadow() {
   }
 }
 
+// fill type
+function drawFillType() {
+  const canvas = document.getElementById("tutorial");
+  if (canvas.getContext) {
+    const ctx = canvas.getContext("2d");
+    
+    ctx.beginPath()
+    ctx.arc(50, 50, 30, 0, Math.PI * 2, true)
+    ctx.arc(50, 50, 15, 0, Math.PI * 2, true)
+
+    ctx.fill("evenodd")
+  }
+}
+
 // draw()
 // drawCircle()
 // drawTransparency()
@@ -279,4 +293,5 @@ function drawShadow() {
 // drawGradients()
 // drawCreateLinearGradient()
 // drawImagePattern()
-drawShadow()
+// drawShadow()
+drawFillType()
